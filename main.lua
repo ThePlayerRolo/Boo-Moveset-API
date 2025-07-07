@@ -2,7 +2,6 @@
 -- description: A Boo Moveset API for CS Mods\n\n\\#ffff00\\Credits: Wibblus's Bowser Moveset\n\n\\#ff7777\\This API requires Character Select\nto use as a Library!
 
 
-
 local BooMovesetAPI = {}
 do
     local _ENV = setmetatable(BooMovesetAPI, { __index = _ENV })
@@ -11,13 +10,18 @@ do
     gBooMovesetFlags = {
         --Allows the character to do float jumps.
         FLAG_FLOAT_ENABLED = (1 << 0),
+        --Adjusts the character idle to use one animation
+        FLAG_EDIT_IDLE     = (1 << 1),
     }
     --Adjusts how much float jumps the character can do before dropping to the floor.
     --FLOAT_CONSTANT = 5
 
     ---@type integer
     --Bitfield Containing Boo Moveset Flags.
-    gPlayerSyncTable[0].booState = 0
+    for i = 0, MAX_PLAYERS - 1 do
+        local p = gPlayerSyncTable[i]
+        p.booState = 0
+    end
 
     --Table Containing Boo Moveset Flags.
     gBooFlagsTable = {}
@@ -46,6 +50,6 @@ do
         if characterModelID == nil then return end
         gBooFlagsTable[characterModelID] = flags
     end
-
+    
     _G.BooMovesetAPI = BooMovesetAPI
 end
