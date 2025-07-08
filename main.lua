@@ -25,6 +25,8 @@ do
 
     --Table Containing Boo Moveset Flags.
     gBooFlagsTable = {}
+    --Table Containing Boo Float Values
+    gBooFloatValuesTable = {}
     
     ---@param m MarioState
     ---@return boolean
@@ -51,5 +53,18 @@ do
         gBooFlagsTable[characterModelID] = flags
     end
     
+
+
+    --- @param characterModelID ModelExtendedId|integer
+    --- @param FloatDataTable table -- Table with Float Data
+    --- Sets The Boo Float Data for the Extended Model ID
+    function character_set_boo_float_data(characterModelID, FloatDataTable)
+        if FloatDataTable == nil then
+            djui_popup_create("Boo Moveset API Error:\n The Float Table Does Not Exist!\n", 2)
+            return
+        end
+        gBooFloatValuesTable[characterModelID] = FloatDataTable
+    end
+
     _G.BooMovesetAPI = BooMovesetAPI
 end
