@@ -10,8 +10,11 @@ do
     gBooMovesetFlags = {
         --Allows the character to do float jumps.
         FLAG_FLOAT_ENABLED = (1 << 0),
-        --Adjusts the character idle to use one animation
-        FLAG_EDIT_IDLE     = (1 << 1),
+        --Enables Vanishing for your Character.
+        FLAG_VANISH_ENABLED     = (1 << 1),
+        --Enables Floating On Water for your Character.
+        FLAG_WATER_FLOAT_ENABLED = (1 << 2),
+
     }
     --Adjusts how much float jumps the character can do before dropping to the floor.
     --FLOAT_CONSTANT = 5
@@ -27,7 +30,12 @@ do
     gBooFlagsTable = {}
     --Table Containing Boo Float Values
     gBooFloatValuesTable = {}
-    
+
+    --Table Checking If You Can Walk On Water
+    gBooFloatOnWater = {}
+    --Table Checking If The Player Walked On Water
+    gBooFloatedOnWater = {}
+
     ---@param m MarioState
     ---@return boolean
     ---Checks if You Have The Proper Flags. (Quite literally Wibblus's Implementation)
